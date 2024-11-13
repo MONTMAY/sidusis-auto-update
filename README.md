@@ -22,18 +22,15 @@ Ten skrypt automatycznie aktualizuje oświadczenia o zasięgu sieci oraz planach
 ## 📋 Instrukcja krok po kroku
 
 1. **Wygeneruj token API SIDUSIS** 🔐:
-
    Zaloguj się do swojego konta SIDUSIS, przejdź do profilu i kliknij „Generuj token” w sekcji *Token REST API*. Zapisz token w bezpiecznym miejscu, ponieważ będzie potrzebny w kolejnych krokach.
 
 2. **Uruchom skrypt konfiguracyjny** 🖥️:
-
    Skopiuj poniższe polecenie i wklej do terminala (SSH), zastępując `YOUR_API_TOKEN` wygenerowanym tokenem. Skrypt automatycznie skonfiguruje zadania `cron`, które codziennie o 12:00 zaktualizują zasięg sieci i plany inwestycyjne w SIDUSIS.
 
    ```bash
    TOKEN=YOUR_API_TOKEN && (echo "0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: Token $TOKEN' --data '{\"are_up_to_date\": true}' >/dev/null 2>&1"; echo "0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/investment_plans/' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: Token $TOKEN' --data '{\"are_up_to_date\": true}' >/dev/null 2>&1") | crontab -
 
 3. **Weryfikacja** ✅:
-
    Aby upewnić się, że zadania zostały dodane poprawnie, możesz wyświetlić swój crontab komendą:
    
    ```bash
@@ -52,9 +49,26 @@ Ten skrypt automatycznie aktualizuje oświadczenia o zasięgu sieci oraz planach
   * Zadania te wysyłają dane wyłącznie w celach aktualizacji, więc błędy można sprawdzić w logach cron w systemie, np. /var/log/syslog lub /var/log/cron.log.
 
 ## 🔒 Bezpieczeństwo
-
-
 Token API jest wrażliwy na dostęp i powinien być przechowywany bezpiecznie. Dla dodatkowego bezpieczeństwa można rozważyć użycie zmiennych środowiskowych lub menedżerów sekretów.
+
+## 🔧 Plany na przyszłe aktualizacje 
+
+W nadchodzących aktualizacjach planujemy dodać dodatkową funkcjonalność i ułatwienia, aby skrypt i jego konfiguracja były jeszcze łatwiejsze do użycia. Oto, co planujemy:
+
+  * Obsługa Docker 🚢
+        Dodamy możliwość uruchomienia skryptu w kontenerze Docker. Dzięki temu użytkownicy będą mogli łatwo uruchomić skrypt w izolowanym środowisku, bez konieczności ręcznej konfiguracji na systemie operacyjnym.
+        Docker zapewni prostsze zarządzanie środowiskiem, a także łatwiejszą migrację i wdrożenie w różnych systemach.
+
+  * Plik docker-compose.yml ⚙️
+        Wprowadzimy plik docker-compose.yml, który umożliwi łatwe uruchomienie kontenera za pomocą jednej komendy. Użytkownicy będą mogli za pomocą docker-compose up szybko uruchomić skrypt w Dockerze z minimalną konfiguracją.
+        Dzięki temu proces instalacji i konfiguracji zostanie uproszczony, a uruchamianie aplikacji stanie się bardziej uniwersalne.
+
+Dalsze plany:
+
+  * Zwiększenie elastyczności konfiguracji (np. poprzez plik .env).
+  * Możliwość skonfigurowania harmonogramu dla różnych zadań lub interwałów czasowych.
+
+Dzięki tym aktualizacjom projekt stanie się jeszcze bardziej dostępny i łatwiejszy w użyciu, zwłaszcza w środowiskach, gdzie Docker jest preferowaną metodą wdrożenia.
 
 ## 📄 Licencja
 
