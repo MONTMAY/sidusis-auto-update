@@ -87,11 +87,11 @@ Token API jest wrażliwy na dostęp i powinien być przechowywany bezpiecznie. D
 
 W nadchodzących aktualizacjach planujemy dodać dodatkową funkcjonalność i ułatwienia, aby skrypt i jego konfiguracja były jeszcze łatwiejsze do użycia. Oto, co planujemy:
 
-*✅ ~~**Obsługa Docker 🚢**
+* ✅ ~~**Obsługa Docker 🚢**
         Dodamy możliwość uruchomienia skryptu w kontenerze Docker. Dzięki temu użytkownicy będą mogli łatwo uruchomić skrypt w izolowanym środowisku, bez konieczności ręcznej konfiguracji na systemie operacyjnym.
         Docker zapewni prostsze zarządzanie środowiskiem, a także łatwiejszą migrację i wdrożenie w różnych systemach.~~
 
-*✅ ~~**Plik docker-compose.yml ⚙️**
+* ✅ ~~**Plik docker-compose.yml ⚙️**
         Wprowadzimy plik docker-compose.yml, który umożliwi łatwe uruchomienie kontenera za pomocą jednej komendy. Użytkownicy będą mogli za pomocą docker-compose up szybko uruchomić skrypt w Dockerze z minimalną konfiguracją.
         Dzięki temu proces instalacji i konfiguracji zostanie uproszczony, a uruchamianie aplikacji stanie się bardziej uniwersalne.~~
 
