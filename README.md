@@ -49,7 +49,7 @@ Alternatywnie, jeśli chcesz uruchomić skrypt w środowisku Docker, wykonaj pon
 
   Sklonuj repozytorium: Użyj git clone, aby pobrać pliki projektu na swoje urządzenie:
    ```bash
-git clone https://github.com/MONTMAY/sidusis-update.git &&
+git clone https://github.com/MONTMAY/sidusis-auto-update.git &&
 cd sidusis-update
    ```
 Przygotuj plik .env: W katalogu, w którym sklonowałeś repozytorium, edytuj plik .env z następującą zawartością:
