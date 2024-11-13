@@ -43,6 +43,38 @@ Ten skrypt automatycznie aktualizuje oświadczenia o zasięgu sieci oraz planach
    0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: Token YOUR_API_TOKEN' --data '{"are_up_to_date": true}' >/dev/null 2>&1
    0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/investment_plans/' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: Token YOUR_API_TOKEN' --data '{"are_up_to_date": true}' >/dev/null 2>&1
 
+## 🐳 Uruchom skrypt za pomocą Docker Compose
+
+Alternatywnie, jeśli chcesz uruchomić skrypt w środowisku Docker, wykonaj poniższe kroki:
+
+  Sklonuj repozytorium: Użyj git clone, aby pobrać pliki projektu na swoje urządzenie:
+   ```bash
+git clone https://github.com/MONTMAY/sidusis-update.git &&
+cd sidusis-update
+   ```
+Przygotuj plik .env: W katalogu, w którym sklonowałeś repozytorium, edytuj plik .env z następującą zawartością:
+   ```bash
+# Wprowadź swój TOKEN API
+TOKEN=YOUR_API_TOKEN
+
+# Opcjonalnie ustaw strefę czasową. Jeśli nie ustawisz, domyślnie będzie używana Europe/Warsaw
+TIMEZONE=Europe/Warsaw
+   ```
+Uruchom kontener Docker za pomocą Docker Compose:
+
+Jeśli masz zainstalowany Docker oraz Docker Compose, uruchom poniższe polecenia:
+   ```bash
+docker-compose up -d
+   ```
+To polecenie uruchomi kontener w tle. Skrypt będzie działał codziennie o 12:00, automatycznie aktualizując dane w SIDUSIS.
+
+Sprawdzenie działania kontenera:
+
+Aby upewnić się, że kontener działa poprawnie, użyj polecenia:
+   ```bash
+docker ps
+   ```
+Powinieneś zobaczyć działający kontener.
 
 ## 📝 Uwagi
   * Token API jest kluczowy do autoryzacji żądań, więc jeśli token wygaśnie lub ulegnie zmianie, należy powtórzyć kroki, aby zaktualizować zadania cron.
