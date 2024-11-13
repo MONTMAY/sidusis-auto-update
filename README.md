@@ -1,3 +1,5 @@
+![Logo](https://github.com/user-attachments/assets/71ef9e58-f4e3-4ae5-a4cd-c1e279d1501d)
+
 # 🚀 SIDUSIS - Automatyczna aktualizacja zasięgu sieci i planów inwestycyjnych
 
 Ten skrypt automatycznie aktualizuje oświadczenia o zasięgu sieci oraz planach inwestycyjnych w serwisie SIDUSIS. Działa na serwerze Linux, korzystając z `cron`, który codziennie o 12:00 wysyła oświadczenia do API SIDUSIS.
