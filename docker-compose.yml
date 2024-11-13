@@ -1,0 +1,11 @@
+services:
+  sidusis-updater:
+    image: alpine:latest
+    container_name: sidusis_updater
+    environment:
+      - TOKEN=${TOKEN}
+      - TIMEZONE=${TIMEZONE}
+    volumes:
+      - ./sidusis-update.sh:/usr/local/bin/sidusis-update.sh
+    entrypoint: ["sh", "/usr/local/bin/sidusis-update.sh"]
+    restart: always
