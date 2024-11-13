@@ -3,9 +3,21 @@
 Ten skrypt automatycznie aktualizuje oświadczenia o zasięgu sieci oraz planach inwestycyjnych w serwisie SIDUSIS. Działa na serwerze Linux, korzystając z `cron`, który codziennie o 12:00 wysyła oświadczenia do API SIDUSIS.
 
 ## 🛠️ Wymagania
-- Serwer z systemem Linux 🐧
-- Dostęp do terminala
-- Konto w SIDUSIS z wygenerowanym tokenem API 🔑
+
+### System operacyjny:
+- **Linux**: Skrypt działa na większości dystrybucji Linuxa, takich jak:
+  - Ubuntu / Debian
+  - CentOS / RHEL
+  - Fedora
+  - Arch Linux
+  - openSUSE
+  - inne dystrybucje zgodne z Unixem
+  
+  Skrypt wykorzystuje narzędzie **cron**, które jest standardowo dostępne w tych systemach.
+
+- **macOS**: Skrypt działa także na systemie macOS, który jest oparty na Unixie i wspiera `cron`.
+
+- **WSL (Windows Subsystem for Linux)**: Jeśli używasz systemu Windows, możesz uruchomić skrypt w środowisku **WSL**, które pozwala na korzystanie z systemu Linux na Windowsie.
 
 ## 📋 Instrukcja krok po kroku
 
