@@ -1,20 +1,22 @@
 # Wybieramy oficjalny obraz Alpine jako bazowy
 FROM alpine:latest
 
-# Instalacja wymaganych zależności (dcron, curl, tzdata)
+# Instalacja dcron, curl
 RUN apk update && \
-    apk add --no-cache dcron curl bash tzdata && \
-    cp /usr/share/zoneinfo/Europe/Warsaw /etc/localtime && \
-    echo "Europe/Warsaw" > /etc/timezone
+    apk add --no-cache dcron curl bash && \
+    mkdir /var/log/cron
 
-# Kopiowanie skryptu entrypoint.sh do kontenera
-COPY entrypoint.sh /entrypoint.sh
+# Ustawienie zmiennej TOKEN i konfiguracja crontaba
+# Harmonogram: codziennie o 12:00
+ARG TOKEN
+RUN echo "0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/' \
+    --header 'Accept: application/json' --header 'Content-Type: application/json' \
+    --header 'Authorization: Token $TOKEN' --data '{\"are_up_to_date\": true}' >/var/log/cron/cron.log 2>&1" \
+    > /etc/crontabs/root && \
+    echo "0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/investment_plans/' \
+    --header 'Accept: application/json' --header 'Content-Type: application/json' \
+    --header 'Authorization: Token $TOKEN' --data '{\"are_up_to_date\": true}' >/var/log/cron/cron.log 2>&1" \
+    >> /etc/crontabs/root
 
-# Ustawianie uprawnień do skryptu entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Skrypt zostanie uruchomiony przy starcie kontenera
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
-
-# Uruchomienie cron w trybie foreground
+# Uruchomienie crona w trybie foreground
 CMD ["crond", "-f"]

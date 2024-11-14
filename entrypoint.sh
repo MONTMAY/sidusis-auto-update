@@ -2,11 +2,13 @@
 
 # Aktualizacja repozytoriów i instalacja zależności
 apk update && \
-apk add --no-cache tzdata curl cron
+apk add --no-cache tzdata curl
 
 # Ustawienie strefy czasowej
-cp /usr/share/zoneinfo/$TIMEZONE /etc/localtime
-echo $TIMEZONE > /etc/timezone
+#cp /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+#echo $TIMEZONE > /etc/timezone
+
+
 
 # Dodanie zadań do crontab
 echo "0 12 * * * curl --location --request PUT 'https://internet.gov.pl/api/statement/' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: Token $API_TOKEN' --data '{\"are_up_to_date\": true}'" >> /etc/crontab

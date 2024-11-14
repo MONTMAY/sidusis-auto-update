@@ -1,10 +1,8 @@
 services:
   sidusis_updater:
-    build: .  # Budowanie kontenera na podstawie Dockerfile
-    container_name: sidusis_updater
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      - TIMEZONE=${TIMEZONE:-Europe/Warsaw}
-      - API_TOKEN=${API_TOKEN}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
+      - TOKEN=${TOKEN}
+    restart: unless-stopped
