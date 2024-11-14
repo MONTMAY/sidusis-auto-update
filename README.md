@@ -59,8 +59,6 @@ Przygotuj plik .env: W katalogu, w którym sklonowałeś repozytorium, edytuj pl
 # Wprowadź swój TOKEN API
 TOKEN=YOUR_API_TOKEN
 
-# Opcjonalnie ustaw strefę czasową. Jeśli nie ustawisz, domyślnie będzie używana Europe/Warsaw
-TIMEZONE=Europe/Warsaw
    ```
 Uruchom kontener Docker za pomocą Docker Compose:
 
@@ -80,7 +78,6 @@ Powinieneś zobaczyć działający kontener.
 
 ## 📝 Uwagi
   * Token API jest kluczowy do autoryzacji żądań, więc jeśli token wygaśnie lub ulegnie zmianie, należy powtórzyć kroki, aby zaktualizować zadania cron.
-  * Zadania te wysyłają dane wyłącznie w celach aktualizacji, więc błędy można sprawdzić w logach cron w systemie, np. /var/log/syslog lub /var/log/cron.log.
 
 ## 🔒 Bezpieczeństwo
 Token API jest wrażliwy na dostęp i powinien być przechowywany bezpiecznie. Dla dodatkowego bezpieczeństwa można rozważyć użycie zmiennych środowiskowych lub menedżerów sekretów.
