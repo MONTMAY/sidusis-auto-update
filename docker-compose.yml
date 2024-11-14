@@ -1,12 +1,6 @@
 services:
   sidusis_updater:
-    image: alpine:latest
+    build: .
+    env_file:
+      - .env
     container_name: sidusis_updater
-    environment:
-      - TIMEZONE=${TIMEZONE:-Europe/Warsaw}
-      - API_TOKEN=${API_TOKEN}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./entrypoint.sh:/entrypoint.sh  # Montowanie pliku entrypoint.sh
-    entrypoint: ["/bin/sh", "/entrypoint.sh"]  # Uruchomienie skryptu jako entrypoint
-    restart: always  # Zapewnienie, że kontener uruchomi się na nowo w przypadku awarii
