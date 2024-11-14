@@ -1,8 +1,6 @@
 services:
   sidusis_updater:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - TOKEN=${TOKEN}
-    restart: unless-stopped
+    build: .
+    env_file:
+      - .env
+    container_name: sidusis_updater
